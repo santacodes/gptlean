@@ -1,3 +1,7 @@
+--BPP 
+A promise problem A (Ayes Ano) is in BPP if and only if there exists a polynomial-time probabilistic Turing machine M that accepts every string x Ayes with probability at least 2/3, and accepts every string x E Ano with probability at most 1/3.
+
+
 import Init.Data.List
 
 namespace complexity
