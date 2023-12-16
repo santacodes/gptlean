@@ -1,3 +1,5 @@
+--The AWPP promise problem is represented by the awpp_promise_problem structure, which includes sets of 'yes' and 'no' instances. The AWPP complexity class is then defined using a predicate P over promise problems. The class is satisfied if, for every instance in the promise problem, there exists a polynomial poly and a quantum protocol (verifier and prover) that satisfies the given conditions.
+
 import data.nat.basic
 import data.real.basic
 
