@@ -1,3 +1,9 @@
+--Let A = (Ayes, Ano) be a promise problem and let a, b : N → [0, 1] be functions.Then A ∈ BQP(a,b) if and only if there exists a polynomial-time generated family of quantum circuits Q= {Qn : n ∈ N}, where each circuit Qn takes n input qubits and produces one output qubit, that satisfies the following properties:
+--1. if x ∈ Ayes then Pr[Q accepts x] ≥ a(|x|), and
+--2. if x ∈ Ano then Pr[Q accepts x] ≤ b(|x|).
+--The class BQP is defined as BQP = BQP(2/3, 1/3)
+
+
 -- Import necessary libraries
 import Mathlib.Init.Set
 
