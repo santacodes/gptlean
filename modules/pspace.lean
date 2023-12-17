@@ -12,8 +12,8 @@ structure TuringMachine where
   transition : states → symbols → states → symbols → List (ℝ × ℝ)  -- Probabilistic transition function
 
 structure TMConfiguration (TM : Type TuringMachine) where
-  state  : TM.states
-  tape  list : TM.symbols
+  state  : Type
+  tape   : Type
 
 def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → bool) :=
   ∃ (poly  ℕ :ℕ), ∀ (n  ℕ), ∃ (config : TMConfiguration TM),
