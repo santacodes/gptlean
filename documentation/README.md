@@ -35,6 +35,17 @@ If we denote by SPACE(f(n)), the set of all problems that can be solved by Turin
 
 ![img](https://i.ibb.co/v1H6J9g/pspace.png)
 
+PSPACE is a strict superset of the set of context-sensitive languages
+
+```
+def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → bool) :=
+  ∃ (poly  ℕ :ℕ), ∀ (n  ℕ), ∃ (config : TMConfiguration TM),
+    config.tape.length ≤ poly n ∧
+    (∀ (eps  ℝ), eps  0 → ∃ (k ℕ), Pr[f TM config k] ≥ 1 - eps)
+
+end complexity
+```
+
 #### Hosting Site
 
 To host this template on GitHub Pages do the following:
