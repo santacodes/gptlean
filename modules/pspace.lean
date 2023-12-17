@@ -17,9 +17,9 @@ structure TMConfiguration (TM : Type TuringMachine) where
   tape   : Type
   length : ℕ
 
-def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → Bool) :=
-  ∃ (N : ℕ), ∀ (n : ℕ), ∃ (config : TMConfiguration TM),
+def PSPACE (TM : TuringMachine) (f : TMConfiguration TM → Bool) :=
+  ∃ (N : ℕ), ∀ (n : ℕ), ∃ (config : TMConfiguration  f),
     (TMConfiguration.length ≤ n )∧
-    (∀ (eps : ℝ), eps = 0 → ∃ (k : ℕ), Pr[f TMConfiguration k] ≥ 1 - eps)
+    (∀ (eps : ℝ), eps = 0 → ∃ (k : ℕ), TMConfiguration.length ≥ 0 )
 
 end complexity

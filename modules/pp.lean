@@ -10,7 +10,7 @@ import Mathlib.Data.Set.Basic
 -- Define a probabilistic polynomial-time algorithm
 def isPolyTimeRandAlgorithm {α : Type} (p : α → Prop) (time : α → ℕ) (rand : α → ℕ → Bool) : Prop :=
   ∃ (poly : ℕ → ℕ),
-    (∀ (x : α), time x ≤ poly Nat.size x) ∧
+    (∀ (x : α), time x ≤ poly Nat.Size x) ∧
     ∀ (x : α), p x →
       ∃ (k : ℕ),
         rand x k = tt ∧
