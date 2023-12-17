@@ -1,6 +1,5 @@
-import measure_theory.probability_space
-import measure_theory.integration
-
+import Mathlib.MeasureTheory.probability_space
+import Mathlib.MeasureTheory.Category.integration
 namespace bpp
 
 -- Definition of a probabilistic algorithm
@@ -19,22 +18,22 @@ theorem BPP_is_P (P : probabilistic_algorithm → Prop) :
 begin
   -- Introduce the BPP assumption
   rintros ⟨poly, h⟩,
-  
+
   -- Use a specific polynomial for simplicity; replace with a suitable one
   use (λ n, n^2 + n + 1),
-  
+
   -- Introduce n and a probabilistic algorithm pa
   intros n pa hP,
-  
+
   -- Use classical logic to handle cases where the algorithm outputs true or false
   cases' classical.em (pa.algorithm n = tt) with h1 h2,
-  
+
   -- Case: pa.algorithm n = tt
-  { 
+  {
     -- Apply the correctness property for true output
     exact (h n pa hP).left h1,
   },
-  
+
   -- Case: pa.algorithm n = ff
   {
     -- Apply the error bound property for false output

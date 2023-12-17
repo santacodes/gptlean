@@ -15,6 +15,6 @@ structure TMConfiguration (TM : Type TuringMachine) where
 def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → bool) :=
   ∃ (poly  ℕ :ℕ), ∀ (n  ℕ), ∃ (config : TMConfiguration TM),
     config.tape.length ≤ poly n ∧
-    (∀ (eps  ℝ), eps  0 → ∃ (k  ℕ), Pr[f TM config k] ≥ 1 - eps)
+    (∀ (eps  ℝ), eps  0 → ∃ (k ℕ), Pr[f TM config k] ≥ 1 - eps)
 
 end complexity

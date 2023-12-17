@@ -2,7 +2,7 @@
 import Mathlib.Init.Set
 
 -- Define the set of strings and the collection of quantum circuits
-variables {Σ : Type*} (S : set Σ) (Q : Σ → Type*)
+variable {Σ  : Type*} (S : set Σ) (Q : Σ → Type*)
 
 -- Define polynomial-time decidable quantum circuits
 def polynomial_time_decidable (Qx : Σ → Type*) : Type* :=
