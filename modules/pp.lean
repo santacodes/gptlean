@@ -1,4 +1,4 @@
---
+--A promise problem A=(Ayes,Ano) is in PP if and only if there exist a polynomialtime probabilistic turing machine M that accepts every string x E Ayes with probability strictly greater than 1/2,and accepts every string x E at most 1/2
 
 import data.nat.prime
 import data.nat.gcd
