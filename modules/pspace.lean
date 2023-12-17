@@ -2,6 +2,7 @@
 
 
 import Init.Data.List
+import Mathlib.Probability.Kernel.Basic
 
 namespace complexity
 
@@ -14,10 +15,11 @@ structure TuringMachine where
 structure TMConfiguration (TM : Type TuringMachine) where
   state  : Type
   tape   : Type
+  length : ℕ
 
-def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → bool) :=
-  ∃ (poly  ℕ :ℕ), ∀ (n  ℕ), ∃ (config : TMConfiguration TM),
-    config.tape.length ≤ poly n ∧
-    (∀ (eps  ℝ), eps  0 → ∃ (k ℕ), Pr[f TM config k] ≥ 1 - eps)
+def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → Bool) :=
+  ∃ (N : ℕ), ∀ (n : ℕ), ∃ (config : TMConfiguration TM),
+    (TMConfiguration.length ≤ n )∧
+    (∀ (eps : ℝ), eps = 0 → ∃ (k : ℕ), Pr[f TMConfiguration k] ≥ 1 - eps)
 
 end complexity
