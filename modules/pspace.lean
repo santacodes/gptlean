@@ -1,3 +1,6 @@
+--A promise problem A = (Ayes, Ano) is in PSPACE if and only if there exists a deterministic Turing machine M running in polynomial space that accepts every string x E Ayes and rejects every string x Ano
+
+
 import Init.Data.List
 
 namespace complexity
