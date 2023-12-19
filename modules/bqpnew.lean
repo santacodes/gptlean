@@ -76,8 +76,11 @@ structure QuantumCircuitFamily :=
   (Q : ℕ → ℕ → List Bool → Bool)
   (poly_time : ∀ (n : ℕ), ∃ (p : ℕ), ∀ (x : List Bool), (List.length x) ≤ n)
 
-def is_polynomial (p : polynomial) : Prop :=
-  polynomial.is_a_polynomial p
+
+def is_polynomial (p : polynomial ) : Prop :=
+  if p == some then
+     true
+    else false
 
 -- Define polynomial-time generated family of quantum circuits
 def polynomial_time_generated (Q : QuantumCircuitFamily) : Prop :=
@@ -109,7 +112,11 @@ def BQP' (a b : ℕ → ℝ) : Prop :=
 -- The main theorem: Probability amplitude after applying the quantum circuit
 theorem quantum_circuit_probability_amplitude (initial_state : complex) :
   complex.norm (quantum_circuit initial_state).normalize = ⟨1,0⟩ := by
-  sorry
+  -- sorry
+    -- Define the initial quantum state
+  let initial_state : complex := ⟨1, 0⟩
 
+  #eval "Initial State: " ++ repr initial_state
+  #eval "Hadamard Result: " ++ repr hadamard_result
 
 end complex
