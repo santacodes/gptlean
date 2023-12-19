@@ -157,5 +157,3 @@ lemma PP_complement_closed {α : Type} {p : α → Prop} :
       assumption,
     },
   },
-
--- Additional theorems can be proven similarly.
