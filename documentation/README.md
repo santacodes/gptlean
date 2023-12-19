@@ -1,12 +1,8 @@
-# Docsify Template
+# ATOMS
 
-> A simple [Docsify](https://github.com/docsifyjs/docsify/) template for creating Markdown-based documentation sites, with no build process required.
+> ### Advanced Theorem Optimization and Module System
 
-## Site Setup
 
-### Static Webserver
-
-Upload these template files to any static web server. The file `.nojekyll` is only required if hosting the site on GitHub Pages and otherwise can be removed.
 
 ## Computational Complexity Classes
 
@@ -46,28 +42,53 @@ def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → bool) :=
 end complexity
 ```
 
+### BQP
+
+BQP can be viewed as the languages associated with certain bounded-error uniform families of quantum circuits. A language L is in BQP if and only if there exists a polynomial-time uniform family of quantum circuits , such that {Q<sub>n</sub>: n ∈ N}
+
+- For all n ∈ N, Q<sub>n</sub> takes n qubits as input and outputs 1 bit
+- For all x in L, Pr(Q<sub>|x|</sub>(x)=1)>=2/3
+- For all x not in L, Pr(Q<sub>|x|</sub>(x)=0)>=2/3
+
+```
+def BQP (S : set Σ) (Q : Σ → Type*) : Prop :=
+  poly_time_generated S Q (λ _, bool)
+```
+
+### AWPP
+
+AWPP contains the complexity class BQP (bounded-error quantum polynomial time), which contains the decision problems solvable by a quantum computer in polynomial time, with an error probability of at most 1/3 for all instances. In fact, it is the smallest classical complexity class that upper bounds BQP
+
+```
+def AWPP_BGP (P : awpp_protocol → bgp → Prop) :=
+  ∀ (ap : awpp_protocol) (bgp : bgp),
+    P ap bgp →
+    ∃ (poly : ℕ → ℕ), ∀ (n : ℕ),
+      let public_coins := list.repeat tt n in
+      let ap' := { ap with public_coins := public_coins } in
+      ap.verifier.verify n = tt →
+      let prob_dist := bgp.prob bgp.prob_space in
+      prob_dist {i | (ap'.prover.prover n).state i} ≥ 2/3 ∧ ap.verifier.verify n = ff →
+      prob_dist {i | (ap'.prover.prover n).state i} ≤ 1/3
+      end awpp
+```
+
+### PP
+
+In complexity theory, PP is the class of decision problems solvable by a probabilistic Turing machine in polynomial time, with an error probability of less than 1/2 for all instances. The abbreviation PP refers to probabilistic polynomial time
+
+```
+def PP {α : Type} (p : α → Prop) : Prop :=
+  ∃ (A : Set α) (time : α → ℕ) (rand : α → ℕ → Bool),
+    (isPolyTimeRandAlgorithm A time rand) ∧
+    (∀ (x : α), p x ↔ ∃ (y : α →  A), rand x (time x) = tt) ∧
+    (∀ (x : α), ¬ p x ↔ ∀ (y : α →  A), rand x (time x) = ff)
+```
+
 #### Hosting Site
 
-To host this template on GitHub Pages do the following:
 
-1. Log into GitHub if you have not done so already
-2. Tap the **Use this template** button in the upper-right of this GitHub Repository and choose **Create a new repository**
-3. Enter a name for your new Repository and then tap the **Create repository** button
-4. Once your new Repostitory is created go to **Settings**, then select **Pages** from the left-hand sidebar, and under **Branch** choose **main** and then tap the **Save** button
-5. Wait a minute or two and refresh the same **Pages** page - once your site is ready a message will be displayed at the top of the screen along with a site link and a **Visit site** button
-
-#### Editing Content
-
-How about editing the content of your new Docsify site on GitHub Pages? View the Markdown page you want to edit (for example, **README.md**) and tap the **Pencil Icon**, then save any changes by tapping the green **Commit changes...** button. In just a few moments the Docsify site will be automatically updated to reflect those changes.
-
-### Viewing Locally
-
-Run `npx serve .` (Node.js users) or `python -m http.server 8000` (Python users) in the repo folder to serve run locally.
 
 ## Docsify Documentation
 
 To learn more about using Docsify, visit https://docsify.js.org.
-
-```
-
-```
