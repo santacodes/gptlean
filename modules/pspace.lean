@@ -3,7 +3,7 @@
 
 import Init.Data.List
 import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
-
+import LeanCopilot
 namespace complexity
 
 structure TuringMachine where
@@ -19,7 +19,7 @@ structure TMConfiguration (TM : Type TuringMachine) where
 
 def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → Bool) :=
   ∃ (N : ℕ), ∀ (n : ℕ), ∃ (config : TMConfiguration TM),
+    suggest_tactics
     (TMConfiguration.length ≤ n )∧
     (∀ (eps : ℝ), eps = 0 → ∃ (k : ℕ), ProbabilityMeasure[f TMConfiguration k] ≥ 1 - eps)
-
 end complexity

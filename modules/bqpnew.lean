@@ -9,9 +9,12 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Algebra.Module.Pi
 import Mathlib
 import Mathlib.Data.Complex.Exponential
-
+import Std.Data.String
+import Mathlib.Data.Polynomial.Basic
 
 namespace complex
+
+
 structure complex : Type :=
 (re : ℝ) (im : ℝ)
 noncomputable def magnitude (z : complex) : ℝ :=
@@ -43,8 +46,9 @@ def complex.conj (a : complex) : complex :=
 def complex.norm (a : complex) : complex :=
 ⟨a.re,a.im⟩
 
-def complex.normalize (a : complex) : complex :=
-⟨a.re / complex.norm a, a.im / complex.norm a⟩
+noncomputable def complex.normalize (a : complex) : complex :=
+let w := complex.norm a;
+⟨a.re / w.re, a.im / w.re⟩
 
 -- Quantum state is represented by a complex unit vector
 structure quantum_state : Type :=
@@ -56,7 +60,7 @@ noncomputable def quantum_gate (θ : ℝ) : complex :=
 ⟨Real.cos θ , Real.sin θ⟩
 
 -- Hadamard gate
-def hadamard_gate : complex :=
+noncomputable def hadamard_gate : complex :=
 complex.normalize ⟨1, 1⟩
 
 -- Quantum circuit application
@@ -67,33 +71,33 @@ complex.mul gate state
 noncomputable def quantum_circuit : complex → complex :=
 apply_gate hadamard_gate ∘ apply_gate (quantum_gate (3.14 / 4))
 
-
--- Define the promise problem A
-structure PromiseProblem :=
-  (Ayes Ano : Set string)
-  complex.norm (quantum_circuit initial_state).normalize = ⟨1,0⟩ :=
-
--- Define polynomial-time generated family of quantum circuits
-def polynomial_time_generated (Q : QuantumCircuitFamily) : Prop :=
-  ∀ (n : ℕ),
-    (Q.poly_time n).is_polynomial
-
--- Define the BQP complexity class
-def BQP (a b : ℕ → ℝ) : Prop :=
-  ∃ (Q : ℕ → ℕ → List Bool → Bool),
-    polynomial_time_generated Q ∧
-    ∀ (x : List Bool),
-      (x ∈ Ayes → (Pr (Q (List.length x) x) ≥  (List.length x))) ∧
-      (x ∈ Ano → (Pr (Q (List.length x) x) ≤  (List.length x)))
-
 -- Define polynomial-time generated family of quantum circuits
 structure QuantumCircuitFamily :=
   (Q : ℕ → ℕ → List Bool → Bool)
   (poly_time : ∀ (n : ℕ), ∃ (p : ℕ), ∀ (x : List Bool), (List.length x) ≤ n)
 
+def is_polynomial (p : polynomial) : Prop :=
+  polynomial.is_a_polynomial p
+
+-- Define polynomial-time generated family of quantum circuits
+def polynomial_time_generated (Q : QuantumCircuitFamily) : Prop :=
+  ∀ (n : ℕ),
+    (Q.poly_time n).is_a_polynomial
+
 -- Define probability function Pr
 def Pr (b : Bool) : ℝ :=
   if b then 1 else 0
+
+-- Define the BQP complexity class
+def BQP (a b : ℕ → ℝ) : Prop :=
+  ∃ (Q : ℕ → ℕ → List Bool → Bool),
+    (polynomial_time_generated Q) ^
+    ∀ (x : List Bool),
+      (x ∈ Ayes → (Pr (Q (List.length x) x) ≥  (List.length x))) ∧
+      (x ∈ Ano → (Pr (Q (List.length x) x) ≤  (List.length x)))
+
+  (poly_time : ∀ (n : ℕ), ∃ (p : ℕ), ∀ (x : List Bool), (List.length x) ≤ n)
+
 
 
 -- Define the BQP complexity class using the QuantumCircuitFamily

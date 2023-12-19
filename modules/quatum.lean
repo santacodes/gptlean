@@ -5,7 +5,7 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Algebra.Module.Pi
 import Mathlib
 import Mathlib.Data.Complex.Exponential
-
+import LeanCopilot
 
 
 open Real
