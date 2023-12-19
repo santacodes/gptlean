@@ -9,8 +9,26 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Algebra.Module.Pi
 import Mathlib
 import Mathlib.Data.Complex.Exponential
+
+
+namespace complex
 structure complex : Type :=
 (re : ℝ) (im : ℝ)
+noncomputable def magnitude (z : complex) : ℝ :=
+Real.sqrt (z.re^2 + z.im^2)
+
+noncomputable def phase (z : complex) : ℝ :=
+Real.cos (z.im )
+
+noncomputable def sqrt (z : complex) : complex :=
+let r := Real.sqrt (magnitude z);
+    let θ := phase z / 2
+⟨r * Real.cos θ, r * Real.sin θ⟩
+
+
+-- Example usage
+-- def example_complex : complex := ⟨3, 4⟩
+--def example_sqrt : complex := complex.sqrt example_complex
 
 variable (Ayes Ano)
 def complex.add (a b : complex) : complex :=
@@ -23,7 +41,7 @@ def complex.conj (a : complex) : complex :=
 ⟨a.re, -a.im⟩
 
 def complex.norm (a : complex) : complex :=
-Real.sqrt(a.re^2 + a.im^2)
+⟨a.re,a.im⟩
 
 def complex.normalize (a : complex) : complex :=
 ⟨a.re / complex.norm a, a.im / complex.norm a⟩
@@ -71,7 +89,7 @@ def BQP (a b : ℕ → ℝ) : Prop :=
 -- Define polynomial-time generated family of quantum circuits
 structure QuantumCircuitFamily :=
   (Q : ℕ → ℕ → List Bool → Bool)
-  (poly_time : ∀ (n : ℕ), ∃ (p : ℕ), ∀ (x : List Bool), p (List.length x) ≤ n)
+  (poly_time : ∀ (n : ℕ), ∃ (p : ℕ), ∀ (x : List Bool), (List.length x) ≤ n)
 
 -- Define probability function Pr
 def Pr (b : Bool) : ℝ :=
@@ -84,8 +102,10 @@ def BQP' (a b : ℕ → ℝ) : Prop :=
     ∀ (x : List Bool),
       (x ∈ Ayes → Pr (Q.Q (List.length x) x) ≥  (List.length x)) ∧
       (x ∈ Ano → Pr (Q.Q (List.length x) x) ≤  (List.length x))
-
 -- The main theorem: Probability amplitude after applying the quantum circuit
 theorem quantum_circuit_probability_amplitude (initial_state : complex) :
   complex.norm (quantum_circuit initial_state).normalize = ⟨1,0⟩ := by
   sorry
+
+
+end complex
