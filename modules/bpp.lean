@@ -1,18 +1,21 @@
 --BPP A promise problem A (Ayes Ano) is in BPP if and only if there exists a polynomial-time probabilistic Turing machine M that accepts every string x Ayes with probability at least 2/3, and accepts every string x E Ano with probability at most 1/3.
 
-import Mathlib.MeasureTheory.probability_space
-import Mathlib.MeasureTheory.Category.integration
+-- Mathlib.MeasureTheory.probability_space
+-- import Mathlib.MeasureTheory.Category.integration
+import Mathlib.Probability.ConditionalProbability
+import Mathlib.Probability.Integration
+import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
 namespace bpp
 
 -- Definition of a probabilistic algorithm
 structure probabilistic_algorithm :=
-  (algorithm : ℕ → bool)
-  (bounded_error : ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), measure_theory.prob {k | algorithm k = algorithm n} ≥ 1/2 + 1/poly n)
+  (algorithm : ℕ → Bool)
+  (bounded_error : ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), ProbabilityMeasure {k | algorithm k = algorithm n} ≥ 1/2 + 1/poly n)
 
 -- BPP complexity class
 def BPP (P : probabilistic_algorithm → Prop) :=
-  ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), ∀ (pa : probabilistic_algorithm),
-    P pa → (pa.algorithm n = tt → measure_theory.prob {k | pa.algorithm k = tt} ≥ 2/3) ∧ (pa.algorithm n = ff → measure_theory.prob {k | pa.algorithm k = ff} ≤ 1/3)
+  ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), ∀ (pa : ConditionalProbability),
+    P pa → (pa.algorithm n = tt → ProbabilityMeasure {k | pa.algorithm k = tt} ≥ 2/3) ∧ (pa.algorithm n = ff → ProbabilityMeasure {k | pa.algorithm k = ff} ≤ 1/3)
 
 -- Theorem: BPP is a subclass of P
 theorem BPP_is_P (P : probabilistic_algorithm → Prop) :
@@ -41,6 +44,5 @@ begin
     -- Apply the error bound property for false output
     exact (h n pa hP).right h2,
   }
-end
 
 end bpp
