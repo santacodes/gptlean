@@ -20,8 +20,8 @@ def complex.conj (a : complex) : complex :=
 ⟨a.re, -a.im⟩
 
 -- Define the norm of a complex number
-def complex.norm (a : complex) : ℝ :=
-Sqrt(a.re^2 + a.im^2)
+def complex.norm (a : complex) : complex :=
+complex.sqrt(a.re^2 + a.im^2)
 
 -- Define the normalized complex number (unit vector)
 def complex.normalize (a : complex) : complex :=
