@@ -8,29 +8,40 @@
 import Mathlib.Init.Set
 
 -- Define the set of strings and the collection of quantum circuits
-variable {Σ : Type*} (S : Set Σ) (Q : Σ → Type*)
+variable {σ  : Type} (S : Set σ ) (Q : σ  → Type)
+
+structure TuringMachine where
+  states : Type                 -- Set of states
+  symbols : Type                -- Set of symbols
+  blank : symbols                -- Blank symbol not in input alphabet
+  transition : states → symbols → states → symbols → List (ℝ × ℝ)  -- Probabilistic transition function
+
+structure TMConfiguration (TM : Type TuringMachine) where
+  state  : Type
+  tape   : Type
+  length : ℕ
 
 -- Define polynomial-time decidable quantum circuits
-def polynomial_time_decidable (Qx : Σ →  Type) : Type* :=
-  ∀ (x : Σ), polynomial_time_decidable (Qx x)
-
--- Define polynomial-time generated collection of quantum circuits
-def poly_time_generated (encoding : Π (x : Σ), polynomial_time_decidable (Q x)) : Prop :=
-  ∃ (TM : polynomial_time_turing_machine),
-    ∀ (x : Σ), x ∈ S → TM.eval x = some (encoding x)
+def polynomial_time_decidable (Qx : σ →  Type) : Type :=
+  ∀ (x : σ), polynomial_time_decidable (Qx x)
 
 -- Define a polynomial-time Turing machine
 structure polynomial_time_turing_machine :=
-  (TM : Σ → option Σ) -- Replace with the actual definition of the Turing machine
+  (TM : σ  → option σ ) -- Replace with the actual definition of the Turing machine
+
+-- Define polynomial-time generated collection of quantum circuits
+def poly_time_generated (encoding :  α (x : σ )) polynomial_time_decidable (Q x) : Prop :=
+  ∃ (TM : polynomial_time_turing_machine),
+    ∀ (x : σ ), x ∈ S → TM.eval x = some (encoding x)
 
 -- Define the BQP class
-def BQP (S : Set Σ) (Q : Σ → Type*) : Prop :=
-  poly_time_generated S Q (λ _, bool)  -- Assume the encoding is a boolean function for simplicity
+def BQP (S : Set σ ) (Q : σ  → Type) : Prop :=
+  poly_time_generated S Q (λ _, Bool)  -- Assume the encoding is a boolean function for simplicity
 
 -- Example usage:
-variables (S : Set Σ) (Q : Σ → Type*)
+variables (S : Set σ ) (Q : σ  → Type)
 
 -- Theorem statement connecting BQP and polynomial-time generation
 theorem BQP_and_poly_time_generated :
-  BQP S Q ↔ poly_time_generated S Q (λ _, bool) :=
+  BQP S Q ↔ poly_time_generated S Q (λ _, Bool) :=
 iff.rfl

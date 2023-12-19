@@ -20,6 +20,6 @@ structure TMConfiguration (TM : Type TuringMachine) where
 def PSPACE (TM  TuringMachine) (f : TMConfiguration TM → Bool) :=
   ∃ (N : ℕ), ∀ (n : ℕ), ∃ (config : TMConfiguration TM),
     (TMConfiguration.length ≤ n )∧
-    (∀ (eps : ℝ), eps = 0 → ∃ (k : ℕ), ProbabilityMeasure[f k] ≥ 1 - eps)
+    (∀ (eps : ℝ), eps = 0 → ∃ (k : ℕ), ProbabilityMeasure[f TMConfiguration k] ≥ 1 - eps)
 
 end complexity

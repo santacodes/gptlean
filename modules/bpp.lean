@@ -10,12 +10,12 @@ namespace bpp
 -- Definition of a probabilistic algorithm
 structure probabilistic_algorithm :=
   (algorithm : ℕ → Bool)
-  (bounded_error : ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), ProbabilityMeasure {k | algorithm k = algorithm n} ≥ 1/2 + 1/poly n)
+  (bounded_error : ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), ProbabilityMeasure{k | algorithm k = algorithm n} ≥ 1/2 + 1/poly n)
 
 -- BPP complexity class
 def BPP (P : probabilistic_algorithm → Prop) :=
   ∃ (poly : ℕ → ℕ), ∀ (n : ℕ), ∀ (pa : ConditionalProbability),
-    P pa → (pa.algorithm n = tt → ProbabilityMeasure {k | pa.algorithm k = tt} ≥ 2/3) ∧ (pa.algorithm n = ff → ProbabilityMeasure {k | pa.algorithm k = ff} ≤ 1/3)
+    P pa → (pa.algorithm n = tt → ProbabilityMeasure {k | pa.algorithm k = tt} ≥ 2/3) ∧ (pa.algorithm n = ff → ProbabilityMeasure{k | pa.algorithm k = ff} ≤ 1/3)
 
 -- Theorem: BPP is a subclass of P
 theorem BPP_is_P (P : probabilistic_algorithm → Prop) :
