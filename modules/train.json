@@ -1,0 +1,131 @@
+[{
+    "url": "https://github.com/leanprover-community/mathlib",
+    "commit": "19c869efa56bbb8b500f2724c0b77261edbfa28c",
+    "file_path": "src/algebra/monoid_algebra/division.lean",
+    "full_name": "add_monoid_algebra.mul_of'_mod_of",
+    "start": [
+        148,
+        1
+    ],
+    "end": [
+        157,
+        4
+    ],
+    "traced_tactics": [
+        {
+            "tactic": "ext g'",
+            "annotated_tactic": [
+                "ext g'",
+                []
+            ],
+            "state_before": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng : G\n\u22a2 x * of' k G g %\u1d52\u1da0 g = 0",
+            "state_after": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) g' = \u21d10 g'"
+        },
+        {
+            "tactic": "rw finsupp.zero_apply",
+            "annotated_tactic": [
+                "rw <a>finsupp.zero_apply</a>",
+                [
+                    {
+                        "full_name": "finsupp.zero_apply",
+                        "def_path": "src/data/finsupp/defs.lean",
+                        "def_pos": [
+                            133,
+                            7
+                        ]
+                    }
+                ]
+            ],
+            "state_before": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) g' = \u21d10 g'",
+            "state_after": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) g' = 0"
+        },
+        {
+            "tactic": "obtain \u27e8d, rfl\u27e9 | h := em (\u2203 d, g' = g + d)",
+            "annotated_tactic": [
+                "obtain \u27e8d, rfl\u27e9 | h := <a>em</a> (\u2203 d, g' = g + d)",
+                [
+                    {
+                        "full_name": "em",
+                        "def_path": "src/logic/basic.lean",
+                        "def_pos": [
+                            329,
+                            9
+                        ]
+                    }
+                ]
+            ],
+            "state_before": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) g' = 0",
+            "state_after": "2 goals\nk : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng d : G\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) (g + d) = 0\n\nk : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G,\nh : \u00ac\u2203 (d : G), g' = g + d\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) g' = 0"
+        },
+        {
+            "tactic": "rw mod_of_apply_self_add",
+            "annotated_tactic": [
+                "rw <a>mod_of_apply_self_add</a>",
+                [
+                    {
+                        "full_name": "add_monoid_algebra.mod_of_apply_self_add",
+                        "def_path": "src/algebra/monoid_algebra/division.lean",
+                        "def_pos": [
+                            133,
+                            15
+                        ]
+                    }
+                ]
+            ],
+            "state_before": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng d : G\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) (g + d) = 0",
+            "state_after": "no goals"
+        },
+        {
+            "tactic": "rw [mod_of_apply_of_not_exists_add _ _ _ h, of'_apply, mul_single_apply_of_not_exists_add]",
+            "annotated_tactic": [
+                "rw [<a>mod_of_apply_of_not_exists_add</a> _ _ _ h, <a>of'_apply</a>, <a>mul_single_apply_of_not_exists_add</a>]",
+                [
+                    {
+                        "full_name": "add_monoid_algebra.mod_of_apply_of_not_exists_add",
+                        "def_path": "src/algebra/monoid_algebra/division.lean",
+                        "def_pos": [
+                            119,
+                            15
+                        ]
+                    },
+                    {
+                        "full_name": "add_monoid_algebra.of'_apply",
+                        "def_path": "src/algebra/monoid_algebra/basic.lean",
+                        "def_pos": [
+                            1232,
+                            15
+                        ]
+                    },
+                    {
+                        "full_name": "add_monoid_algebra.mul_single_apply_of_not_exists_add",
+                        "def_path": "src/algebra/monoid_algebra/basic.lean",
+                        "def_pos": [
+                            1259,
+                            7
+                        ]
+                    }
+                ]
+            ],
+            "state_before": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G,\nh : \u00ac\u2203 (d : G), g' = g + d\n\u22a2 \u21d1(x * of' k G g %\u1d52\u1da0 g) g' = 0",
+            "state_after": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G,\nh : \u00ac\u2203 (d : G), g' = g + d\n\u22a2 \u00ac\u2203 (d : G), g' = d + g"
+        },
+        {
+            "tactic": "simpa only [add_comm] using h",
+            "annotated_tactic": [
+                "simpa only [<a>add_comm</a>] using h",
+                [
+                    {
+                        "full_name": "add_comm",
+                        "def_path": "src/algebra/group/defs.lean",
+                        "def_pos": [
+                            220,
+                            7
+                        ]
+                    }
+                ]
+            ],
+            "state_before": "k : Type u_1,\nG : Type u_2,\n_inst_1 : semiring k,\n_inst_2 : add_cancel_comm_monoid G,\nx : add_monoid_algebra k G,\ng g' : G,\nh : \u00ac\u2203 (d : G), g' = g + d\n\u22a2 \u00ac\u2203 (d : G), g' = d + g",
+            "state_after": "no goals"
+        }
+    ]
+}]

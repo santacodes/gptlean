@@ -78,7 +78,7 @@ structure QuantumCircuitFamily :=
 
 
 def is_polynomial (p : polynomial ) : Prop :=
-  if p == some then
+  if p == 0 then
      true
     else false
 
