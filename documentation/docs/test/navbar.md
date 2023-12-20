@@ -1,0 +1,48 @@
+<!-- markdownlint-disable no-empty-links -->
+<!-- markdownlint-disable-next-line first-line-heading -->
+- Text
+- [Link](http://google.com)
+- [Menu (Link)](http://google.com)
+  - [![alt text](https://icongr.am/simple/facebook.svg?colored&size=16)Facebook](http://facebook.com)
+  - [![alt](https://icongr.am/simple/github.svg?colored&size=16)Github](http://github.com)
+  - [![alt](https://icongr.am/simple/instagram.svg?colored&size=16)Instagram](http://instagram.com)
+  - [![alt](https://icongr.am/simple/linkedin.svg?colored&size=16)Linkedin](http://linkedin.com)
+  - [![alt](https://icongr.am/simple/pinterest.svg?colored&size=16)Pinterest](http://pinterest.com)
+  - [![alt](https://icongr.am/simple/tumblr.svg?colored&size=16)Tumblr](http://tumblr.com)
+  - [![alt](https://icongr.am/simple/twitter.svg?colored&size=16)Twitter](http://twitter.com)
+  - [![alt](https://icongr.am/simple/youtube.svg?colored&size=16)YouTube](http://youtube.com)
+- Menu <span>(Text)</span>
+  - [Alfa](#)
+  - [Bravo](#)
+  - [Charlie](#)
+  - [Delta](#)
+  - [Echo](#)
+  - [Foxtrot](#)
+  - [Golf](#)
+  - [Hotel](#)
+  - [India](#)
+  - [Juliett](#)
+  - [Kilo](#)
+  - [Lima](#)
+  - [Mike](#)
+  - [November](#)
+  - [Oscar](#)
+  - [Papa](#)
+  - [Quebec](#)
+  - [Romeo](#)
+  - [Sierra](#)
+  - [Tango](#)
+  - [Uniform](#)
+  - [Victor](#)
+  - [Whiskey](#)
+  - [X-ray](#)
+  - [Yankee](#)
+  - [Zulu](#)
+- Themes
+  - <a href="#" data-link-href="theme-defaults.css">Defaults</a>
+  - <a href="#" data-link-href="theme-simple.css">Simple</a>
+  - <a href="#" data-link-href="theme-simple-dark.css">Simple Dark</a>
+  - <a href="#" data-link-href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">Vue</a>
+  - <a href="#" data-link-href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/buble.css">Buble</a>
+  - <a href="#" data-link-href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">Dark</a>
+  - <a href="#" data-link-href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/pure.css">Pure</a>

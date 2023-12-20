@@ -1,0 +1,78 @@
+{
+  "name": "docsify-themeable",
+  "version": "0.9.0",
+  "description": "A delightfully simple theme system for docsify.js. Features multiple themes with rich customization options, an improved desktop and mobile experience, and legacy browser support (IE11+).",
+  "author": "John Hildenbiddle",
+  "license": "MIT",
+  "homepage": "https://jhildenbiddle.github.io/docsify-themeable/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://jhildenbiddle@github.com/jhildenbiddle/docsify-themeable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhildenbiddle/docsify-themeable/issues"
+  },
+  "type": "module",
+  "keywords": [
+    "css",
+    "custom",
+    "docs",
+    "docsify",
+    "documentation",
+    "properties",
+    "theme",
+    "themes",
+    "themeable",
+    "variables"
+  ],
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ],
+  "files": [
+    "dist",
+    "src/scss"
+  ],
+  "main": "dist/js/docsify-themeable.js",
+  "unpkg": "dist/js/docsify-themeable.min.js",
+  "scripts": {
+    "prepare": "run-s clean build",
+    "build": "npm-run-all build:scss --parallel build:js build:pcss",
+    "build:js": "rollup -c",
+    "build:pcss": "postcss build/css/**/*.css --dir dist/css --map",
+    "build:scss": "sass src/scss:build/css --source-map --style=compressed --load-path=node_modules",
+    "clean": "rimraf --glob build/* dist/* docs/css docs/js",
+    "lint": "eslint . && markdownlint *.md docs/*.md",
+    "serve": "node server.cjs",
+    "start": "run-p watch serve",
+    "test": "npm run lint",
+    "watch": "run-p 'build:* -- -w'",
+    "prewatch": "npm run build:scss",
+    "version": "npm run prepare && npm test"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-eslint": "^9.0.5",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "autoprefixer": "^10.4.16",
+    "browser-sync": "^2.29.3",
+    "compression": "^1.7.4",
+    "css-vars-ponyfill": "^2.4.8",
+    "eslint": "^8.51.0",
+    "eslint-plugin-html": "^7.1.0",
+    "include-media": "^2.0.0",
+    "markdownlint-cli": "^0.37.0",
+    "mergician": "^1.1.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^10.1.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.1.3",
+    "sass": "^1.69.5",
+    "sass-utilities": "^1.0.0"
+  }
+}
