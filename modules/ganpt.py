@@ -9,13 +9,13 @@ retrieved_premises = [
   "@[simp] theorem <a>nat.mod_self</a> (n : nat) : n % n = 0",
 ]
 input = "\n\n".join(retrieved_premises + [state])
-print("------ INPUT ------\n", input)
+print("------ THEOREM INPUT ------\n", input)
 tokenized_input = tokenizer(input, return_tensors="pt", max_length=2300, truncation=True)
 
 # Generate a single tactic.
 tactic_ids = model.generate(tokenized_input.input_ids, max_length=1024)
 tactic = tokenizer.decode(tactic_ids[0], skip_special_tokens=True)
-print("\n------ OUTPUT ------")
+print("\n------ GENERATED REPROVER OUTPUT ------")
 print(tactic, end="\n\n")
 
 # Generate multiple tactics via beam search.
