@@ -6,7 +6,7 @@ Open VSCode from modules folder to contribute while on lean4.
 
 There is a python file to suggest tactics and proofs for your theorems using LeanDojo. Additional tactics can be trained in that model using pytorch.
 
-## QUantum Computational Complexity Classes
+## Quantum Computational Complexity Classes
 
 To learn more about [Quantum Computational Classes](https://arxiv.org/abs/0804.3401), refer this research paper by John Watrous. 
 
